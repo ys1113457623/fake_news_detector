@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: MyAppBar(),
       body: SafeArea(
         child: _loading
@@ -88,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                             options: CarouselOptions(
                                 viewportFraction: 0.8,
                                 initialPage: 1,
-                                aspectRatio: 2.0,
+                                aspectRatio: 1.5,
                                 disableCenter: true,
                                 enlargeCenterPage: false,
                                 enableInfiniteScroll: false),
@@ -124,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                             options: CarouselOptions(
                                 viewportFraction: 0.8,
                                 initialPage: 1,
-                                aspectRatio: 2.0,
+                                aspectRatio: 1.5,
                                 disableCenter: true,
                                 enlargeCenterPage: false,
                                 enableInfiniteScroll: false),

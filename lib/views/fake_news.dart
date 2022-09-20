@@ -14,17 +14,23 @@ class FakeNews extends StatefulWidget {
 
 class _FakeNewsState extends State<FakeNews> {
   List<String> items = [
-    "Home",
-    "Explore",
-    "Search",
+    "Political",
+    "Media",
+    "Other",
   ];
+
+  String sumbittext;
   int current = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        centerTitle: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
               "Fake",
@@ -53,7 +59,7 @@ class _FakeNewsState extends State<FakeNews> {
         children: [
           SizedBox(
             width: double.infinity,
-            height: 60,
+            height: 60.h,
             child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
                 itemCount: items.length,
@@ -64,14 +70,16 @@ class _FakeNewsState extends State<FakeNews> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
+                            sumbittext = items[index];
+                            print(sumbittext);
                             current = index;
                           });
                         },
                         child: AnimatedContainer(
                           duration: const Duration(milliseconds: 300),
                           margin: const EdgeInsets.all(5),
-                          width: 80,
-                          height: 45,
+                          width: 80.w,
+                          height: 45.h,
                           decoration: BoxDecoration(
                             color: current == index
                                 ? Colors.white70
