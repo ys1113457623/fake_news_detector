@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   void getNews() async {
     News news = News();
-    await news.getNews();
+    await news.getTopNews();
     newslist = news.news;
     setState(() {
       _loading = false;

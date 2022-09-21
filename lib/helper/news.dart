@@ -10,7 +10,7 @@ class News {
 
   List<Article> news  = [];
 
-  Future<void> getNews() async{
+  Future<void> getTopNews() async{
 
     String url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=${apiKey}";
 
