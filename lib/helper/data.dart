@@ -1,4 +1,5 @@
 
+import '../models/article.dart';
 import '../models/categorie_model.dart';
 
 List<CategorieModel> getCategories(){
@@ -50,4 +51,35 @@ List<CategorieModel> getCategories(){
 
   return myCategories;
 
+}
+
+class Utils{
+  List<FakeNew> getFakeNews() {
+    return [
+      FakeNew(
+          author: 'Harshdeep Singh',
+          title:
+              'Planet Nibiru is headed straight for Earth',
+          description:
+              'Sound the alarms and start digging your bunkers, everybody. Planet Nibiru (also known as Planet X and Planet Nine) ‘was’ to be on a direct collision course with Earth all the way back in March 2016',
+          urlToImage:
+              "https://th-i.thgim.com/public/newsletter/the-evening-wrap/vi9jpy/article65896465.ece/alternates/FREE_1200/Modi%20SCO%20meet.jfif"),
+      FakeNew(
+          author: 'Harshdeep Singh',
+          title:
+              '''On 20 Billion Plant For Gujarat, Sharad Pawar's Dig At Centre, Vedanta''',
+          description:
+              'Asked if potential investors fear political instability in Maharashtra, Sharad Pawar said a state has to create a conducive atmosphere for attracting investments and industries.',
+          urlToImage:
+              "https://c.ndtvimg.com/2022-09/lhbbombs_sharad-pawar-650_625x300_11_September_22.jpg"),
+      FakeNew(
+          author: 'Harshdeep Singh',
+          title:
+              'Can’t take Ukraine returnees in Indian colleges, Centre tells Supreme Court',
+          description:
+              'In an affidavit, the Union health ministry pointed out that there are no provisions allowing such transfers either under the Indian Medical Council Act, 1956 or the National Medical Commission Act, 2019.',
+          urlToImage:
+              "https://images.hindustantimes.com/img/2022/09/15/550x309/eb851582-351e-11ed-aaf6-899a59fb6c14_1663264612998.jpg"),
+    ];
+  }
 }

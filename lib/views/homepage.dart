@@ -1,13 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fake_news_detector/helper/data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../helper/news.dart';
 import '../helper/widgets.dart';
 import '../models/categorie_model.dart';
-import 'categorie_news.dart';
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -16,12 +15,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool _loading;
   var newslist;
+  var fakenewlist;
 
   List<CategorieModel> categories = List<CategorieModel>();
 
   void getNews() async {
     News news = News();
+    Utils fakenew = Utils();
     await news.getTopNews();
+    fakenewlist = fakenew.getFakeNews();
     newslist = news.news;
     setState(() {
       _loading = false;
@@ -129,15 +131,15 @@ class _HomePageState extends State<HomePage> {
                                 disableCenter: true,
                                 enlargeCenterPage: false,
                                 enableInfiniteScroll: false),
-                            itemCount: newslist.length,
+                            itemCount: fakenewlist.length,
                             itemBuilder: (context, index, realIndex) {
                               return NewsTile(
-                                author: newslist[index].author ?? " ",
-                                imgUrl: newslist[index].urlToImage ?? "",
-                                title: newslist[index].title ?? "",
-                                desc: newslist[index].description ?? "",
-                                content: newslist[index].content ?? "",
-                                posturl: newslist[index].articleUrl ?? "",
+                                author: fakenewlist[index].author ?? " ",
+                                imgUrl: fakenewlist[index].urlToImage ?? "",
+                                title: fakenewlist[index].title ?? "",
+                                desc: fakenewlist[index].description ?? "",
+                                content: fakenewlist[index].content ?? "",
+                                posturl: fakenewlist[index].articleUrl ?? "",
                               );
                             }),
                       ),
@@ -145,58 +147,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-      ),
-    );
-  }
-}
-
-class CategoryCard extends StatelessWidget {
-  final String imageAssetUrl, categoryName;
-
-  CategoryCard({this.imageAssetUrl, this.categoryName});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CategoryNews(
-                      newsCategory: categoryName.toLowerCase(),
-                    )));
-      },
-      child: Container(
-        margin: EdgeInsets.only(right: 14),
-        child: Stack(
-          children: <Widget>[
-            ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: CachedNetworkImage(
-                imageUrl: imageAssetUrl,
-                height: 60,
-                width: 120,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              height: 60,
-              width: 120,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.black26),
-              child: Text(
-                categoryName,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500),
-              ),
-            )
-          ],
-        ),
       ),
     );
   }

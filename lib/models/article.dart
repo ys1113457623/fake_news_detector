@@ -14,3 +14,21 @@ class Article{
 
 
 }
+
+class FakeNew{
+
+  String title;
+  String author;
+  String description;
+  String urlToImage;
+  DateTime publshedAt;
+  String content;
+  String articleUrl;
+
+  FakeNew({this.title,this.description,this.author,this.content,this.publshedAt,
+    this.urlToImage, this.articleUrl});
+
+
+
+}
+
