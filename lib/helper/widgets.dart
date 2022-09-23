@@ -97,7 +97,7 @@ class NewsTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Stack(
-          fit: StackFit.loose,
+          fit: StackFit.passthrough,
           children: [
             Container(
                 height: 100000.h,
@@ -109,7 +109,8 @@ class NewsTile extends StatelessWidget {
               color: Colors.black.withOpacity(0.5),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 50.0.sp, right: 20.sp, left: 20.sp),
+              padding: EdgeInsets.only(
+                  top: 50.0.sp, right: 20.sp, left: 20.sp, bottom: 20.sp),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -124,26 +125,33 @@ class NewsTile extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Text(
-                    title as String,
-                    maxLines: 2,
-                    overflow: TextOverflow.clip,
-                    style: GoogleFonts.nunito().copyWith(
-                        fontSize: 19.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        title as String,
+                        maxLines: 2,
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.nunito().copyWith(
+                            fontSize: 19.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ),
                   ),
-                  SizedBox(
-                    height: 40.h,
-                  ),
-                  Text(
-                    content as String,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: GoogleFonts.nunito().copyWith(
-                        fontSize: 12.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w200),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Text(
+                        content as String,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: GoogleFonts.nunito().copyWith(
+                            fontSize: 12.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w200),
+                      ),
+                    ),
                   ),
                 ],
               ),

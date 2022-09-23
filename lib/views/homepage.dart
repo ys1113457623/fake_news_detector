@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../helper/news.dart';
 import '../helper/widgets.dart';
 import '../models/categorie_model.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -91,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                             options: CarouselOptions(
                                 viewportFraction: 0.8,
                                 initialPage: 1,
-                                aspectRatio: 1.5,
+                                aspectRatio: 1.6,
                                 disableCenter: true,
                                 enlargeCenterPage: false,
                                 enableInfiniteScroll: false),
@@ -127,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                             options: CarouselOptions(
                                 viewportFraction: 0.8,
                                 initialPage: 1,
-                                aspectRatio: 1.5,
+                                aspectRatio: 1.6,
                                 disableCenter: true,
                                 enlargeCenterPage: false,
                                 enableInfiniteScroll: false),

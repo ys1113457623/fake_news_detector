@@ -110,6 +110,12 @@ class _FakeNewsState extends State<FakeNews> {
                 style: Theme.of(context).textTheme.headline5.copyWith(
                     color: Theme.of(context).indicatorColor,
                     fontWeight: FontWeight.w600),
+              ),
+              Text(
+                "Selection",
+                style: Theme.of(context).textTheme.headline5.copyWith(
+                    color: Theme.of(context).indicatorColor,
+                    fontWeight: FontWeight.w600),
               )
             ],
           ),
