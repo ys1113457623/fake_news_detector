@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -23,8 +24,17 @@ class _FakeNewsState extends State<FakeNews> {
     "Other",
   ];
   File pickedImage;
+  var data;
+  var output;
   String sumbittext;
   int current = 0;
+  bool show = false;
+  var url;
+  fetchdata(String url) async {
+    http.Response response = await http.get(Uri.parse(url));
+    return response.body;
+  }
+
   pickImage(ImageSource imageType) async {
     try {
       final photo = await ImagePicker().pickImage(source: imageType);
@@ -203,6 +213,10 @@ class _FakeNewsState extends State<FakeNews> {
                   minLines: 20,
                   maxLines: 10000000,
                   keyboardType: TextInputType.multiline,
+                  onChanged: (value) {
+                    url = 'http://127.0.0.1:5000/predict?query=' +
+                        value.toString();
+                  },
                   decoration: const InputDecoration(
                       hintText: "Enter Your Fake News Here",
                       hintStyle: TextStyle(color: Colors.grey),
@@ -211,7 +225,23 @@ class _FakeNewsState extends State<FakeNews> {
                 ),
               ),
               ElevatedButton(
-                  onPressed: (() {}),
+                  onPressed: () async {
+                    setState(() {
+                      show = true;
+                    });
+                    data = await fetchdata(url);
+                    setState(() {
+                      if (data == "[0]") {
+                        setState(() {
+                          output = "FAKE";
+                        });
+                      } else if (data == "[1]") {
+                        setState(() {
+                          output = "REAL";
+                        });
+                      }
+                    });
+                  },
                   child: SizedBox(
                     width: 100.w,
                     height: 30.h,

@@ -58,24 +58,6 @@ def fake_news_det(news):
 def index():
     return {'message': 'Hello, World'}
 
-# 4. Route with a single parameter, returns the parameter within a message
-#    Located at: http://127.0.0.1:8000/AnyNameHere
-# @app.get('/{name}')
-# def get_name(name: str):
-#     return {'Welcome To Krish Youtube Channel': f'{name}'}
-
-# 3. Expose the prediction functionality, make a prediction from the passed
-#    JSON data and return the predicted Bank Note with the confidence
-# @app.get('/predict')
-# def predict():
-#     message = request
-#     if request.method == 'GET':
-#         message = request.args['query']
-#         pred = fake_news_det(message)
-#         print(pred)
-#         return str(pred)
-#     else:
-#         return render_template('index.html', prediction="Something went wrong")
 
 @app.get('/{predict}')
 def get_name(predict: str):
