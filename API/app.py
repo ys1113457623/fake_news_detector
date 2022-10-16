@@ -24,6 +24,20 @@ import pickle
 import nltk
 import pandas as pd
 # 2. Create the app object
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app = FastAPI()
 tfvect = TfidfVectorizer(stop_words='english', max_df=0.7)
 loaded_model = pickle.load(open('API/finalmodel.pkl', 'rb'))
@@ -76,15 +90,6 @@ def fake_news_det(news):
     return predict    
 
 
-def fake_news_det(news):
-    tokenizer = Tokenizer()
-    tokenizer.fit_on_texts(X)
-    x = [news]
-    x = tokenizer.texts_to_sequences(x)
-    x = pad_sequences(x,maxlen=maxlen)
-    predict = loaded_model.predict(x)[0].astype(float) * 100
-    return predict
-
 # 3. Index route, opens automatically on http://127.0.0.1:8000
 @app.get('/')
 def index():
@@ -95,12 +100,12 @@ def index():
 def get_name(predict: str):
     pred = fake_news_det(predict)
 
-    return str(pred)
+    return float(pred)
 
 # 5. Run the API with uvicorn
 #    Will run on http://127.0.0.1:8000
 if __name__ == '__main__':
-    uvicorn.run(app, host='127.0.0.1', port=8000)
+    uvicorn.run(app, host='10.12.32.84', port=8000)
     
 #uvicorn app:app --reload
 
